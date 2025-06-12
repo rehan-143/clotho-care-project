@@ -7,84 +7,39 @@
     <title>ngo-status</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* NGO DASHBOARD DETAILS */
-        .ngocont {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .ngo-section {
-            display: flex;
-            gap: 30px 40px;
-            width: 73vw;
-            height: 80vh;
-            margin: 10px 0px;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .map {
-            border: 2px solid brown; 
-            width: 45vw; 
-            height: 77vh;
-        }
-
-        .ngo-box {
-            background-color: #ffffff;
-            border: 2px solid #e0e0e0;
-            border-radius: 15px;
-            padding: 20px;
-            height: 150px;
-            width: 220px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease;
-        }
-
-        .ngo-box:hover {
-            transform: scale(1.02);
-        }
-
-        .status-box {
-            margin-top: 15px;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-weight: bold;
-            color: white;
-            display: inline-block;
-        }
-
-        .status-box.approved {
-            background-color: #28a745;
-        }
-
-        .status-box.pending {
-            background-color: #ffc107;
-        }
-
-        .status-box.rejected {
-            background-color: #dc3545;
-        }
-    </style>
 </head>
 
 <body>
     <div class="navbar">
         <div class="name"><i class="fa-solid fa-shirt"></i> Clotho Cares</div>
-        <div class="element" style="display: flex; width: 23vw; justify-content: space-around;">
+        <div class="element">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="donor.html">Donate</a>
+            <a href="ngo-status.html">NGO DashBoard</a>
         </div>
     </div>
     <img src="backrgound_image.jpg" class="image">
     <div class="black-overlay"></div>
-    <h1 style="text-align: center; color: #ffffff; font-family: serif; margin: 2px;">NGO Dashboard</h1>
-    <div class="ngocont">
-        <div class="ngo-section" id="ngo-data">
+    <div class="ngo-section">
+        <div class="ngo-box">
+            <h3>NGO 1</h3>
+            <p>📍 Delhi</p>
+            <div class="status-box approved">Approved</div>
         </div>
-    <script src="ngo.js"></script>
+
+        <div class="ngo-box">
+            <h3>NGO 2</h3>
+            <p>📍 Mumbai</p>
+            <div class="status-box pending">Pending</div>
+        </div>
+
+        <div class="ngo-box">
+            <h3>NGO 3</h3>
+            <p>📍 Bengaluru</p>
+            <div class="status-box rejected">Rejected</div>
+        </div>
+    </div>
 
 
 </body>
