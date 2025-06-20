@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("donorForm");
-    const donorBox = document.getElementById("donorBox");
-    const thankYouBox = document.getElementById("thankYouBox");
+
+    if (!form) {
+        console.error("❌ Form element not found");
+        return;
+    }
 
     form.addEventListener("submit", async function (e) {
         e.preventDefault();
@@ -9,21 +12,20 @@ document.addEventListener("DOMContentLoaded", function () {
         const formData = new FormData(form); 
 
         try {
-            const res = await fetch("http://localhost:5000/submit", {
-                method: "POST",
+            const response = await fetch('http://localhost:5000/submit', {
+                method: 'POST',
                 body: formData
             });
 
-            if (!res.ok) throw new Error("Network error");
-            const result = await res.json();
-
-            alert(result.message);
-            donorBox.style.display = "none";
-            thankYouBox.style.display = "block";
-
-        } catch (err) {
-            console.error(err);
-            alert("Failed to submit donor details");
+            if (response.ok) {
+                console.log("✅ Donor data saved successfully!");
+                form.reset(); 
+            } else {
+                const err = await response.text();
+                console.error("❌ Server error:", err);
+            }
+        } catch (error) {
+            console.error("❌ Fetch error:", error);
         }
     });
 });
