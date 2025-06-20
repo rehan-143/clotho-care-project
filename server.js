@@ -14,7 +14,7 @@ if (!fs.existsSync(uploadFolder)) {
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/');
+    cb(null, uploadFolder);
   },
   filename: function (req, file, cb) {
     const uniqueName = Date.now() + '-' + file.originalname;
@@ -29,9 +29,13 @@ app.use(express.json());
 const donorsJsonPath = path.join(__dirname, 'donors.json');
 
 function loadDonorData() {
-  if (fs.existsSync(donorsJsonPath)) {
-    const data = fs.readFileSync(donorsJsonPath, 'utf8');
-    return JSON.parse(data);
+  try {
+    if (fs.existsSync(donorsJsonPath)) {
+      const data = fs.readFileSync(donorsJsonPath, 'utf8');
+      return JSON.parse(data || '[]');
+    }
+  } catch (e) {
+    console.error("❌ JSON parse error:", e);
   }
   return [];
 }
@@ -46,14 +50,11 @@ app.post('/submit', upload.single('pdfFile'), (req, res) => {
   };
 
   const donors = loadDonorData();
-
-
   donors.push(donor);
-
 
   fs.writeFile(donorsJsonPath, JSON.stringify(donors, null, 2), (err) => {
     if (err) {
-      console.error('Error saving donor to file', err);
+      console.error('❌ Error saving donor to file:', err);
       return res.status(500).json({ message: 'Failed to save donor' });
     }
 
@@ -66,3 +67,5 @@ const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
+
+
