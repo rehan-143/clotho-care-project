@@ -2,11 +2,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    overflow-x: hidden;
-    overflow-y: hidden;
 }
 
 body {
+    overflow-x: hidden;
     font-family: Arial, sans-serif;
     background-color: #ffffff;
 }
@@ -150,14 +149,16 @@ body {
 /* DONOR DETAILS CSS */
 
 .donor-section {
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 90vh;
+    min-height: calc(100vh - 80px);
     padding: 2rem;
-
+    position: relative;
+    text-align: center;
+    flex-direction: column;
 }
+
 
 .donor-details-box {
     background-color: #000;
@@ -207,18 +208,6 @@ body {
     background-color: #40916c;
 }
 
-.thank-you-box {
-    display: none;
-    margin-top: 20px;
-    background-color: #f0f9ff;
-    padding: 20px;
-    border: 2px solid #0099cc;
-    border-radius: 10px;
-    text-align: center;
-    color: #006080;
-    font-size: 1.2rem;
-}
-
 /* NGO DASHBOARD DETAILS */
 
 .ngo-section {
@@ -264,3 +253,4 @@ body {
 .status-box.rejected {
     background-color: #dc3545;
 }
+
