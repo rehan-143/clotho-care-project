@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Donor</title>
+    <title>Donor | Clotho Cares</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
@@ -15,18 +15,17 @@
         <div class="element">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
-            <a href="donor.html">Donate</a>
-            <a href="ngo-status.html">NGO DashBoard</a>
+            <a href="donor.html" class="active">Donate</a>
+            <a href="ngo-status.html">NGO Dashboard</a>
         </div>
     </div>
 
-    <img src="backrgound_image.jpg" class="image" />
+    <img src="backrgound_image.jpg" class="image" alt="Background image of clothes donation" />
     <div class="black-overlay"></div>
-
     <div class="donor-section">
         <div class="donor-details-box" id="donorBox">
             <h2>Donor Details</h2>
-            <form id="donorForm" enctype="multipart/form-data">
+            <form id="donorForm" enctype="multipart/form-data" onsubmit="return false;">
                 <input type="text" name="name" placeholder="Full Name" required />
                 <input type="email" name="email" placeholder="Email Address" required />
                 <input type="tel" name="phone" placeholder="Phone Number" required />
@@ -34,17 +33,11 @@
                 <input type="file" name="pdfFile" accept="application/pdf" required />
                 <button type="submit">Submit</button>
             </form>
-
-        </div>
-
-        <!-- Thank You Box (initially hidden) -->
-        <div class="thank-you-box" id="thankYouBox" style="display: none;">
-            <h3>Thank You for Donating!</h3>
-            <p>Your contribution is valued and will make a real difference.</p>
         </div>
     </div>
 
-    <script src="main.js"></script>
+    <script src="main.js" defer></script>
+
 </body>
 
 </html>
