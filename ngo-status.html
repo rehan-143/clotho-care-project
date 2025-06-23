@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ngo-status</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -19,29 +20,244 @@
             <a href="ngo-status.html">NGO Dashboard</a>
         </div>
     </div>
+
     <img src="backrgound_image.jpg" class="image">
     <div class="black-overlay"></div>
-    <div class="ngo-section">
-        <div class="ngo-box">
-            <h3>NGO 1</h3>
-            <p>📍 Delhi</p>
-            <div class="status-box approved">Approved</div>
+
+    <div class="dashboard-container">
+        <div class="ngo-section">
+            <h2><i class="fas fa-hands-helping"></i> Nearby NGOs</h2>
+
+            <div class="ngo-box" data-ngo="0">
+                <h3><i class="fas fa-home"></i> Hope Foundation Delhi</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Connaught Place, Delhi</p>
+                <div class="ngo-details">
+                    Providing food and shelter to underprivileged children
+                </div>
+                <div class="status-box approved">Approved</div>
+                <div class="contact-info">
+                    <div><i class="fas fa-phone"></i> +91 98765 43210</div>
+                    <div><i class="fas fa-envelope"></i> contact@hopedelhi.org</div>
+                </div>
+                <div class="ngo-stats">
+                    <span><i class="fas fa-users"></i> 150+ Beneficiaries</span>
+                    <span><i class="fas fa-calendar"></i> Est. 2015</span>
+                </div>
+            </div>
+
+            <div class="ngo-box" data-ngo="1">
+                <h3><i class="fas fa-heart"></i> Care Mumbai Foundation</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Bandra West, Mumbai</p>
+                <div class="ngo-details">
+                    Healthcare services for slum communities
+                </div>
+                <div class="status-box pending">Pending</div>
+                <div class="contact-info">
+                    <div><i class="fas fa-phone"></i> +91 87654 32109</div>
+                    <div><i class="fas fa-envelope"></i> info@caremumbai.org</div>
+                </div>
+                <div class="ngo-stats">
+                    <span><i class="fas fa-users"></i> 200+ Beneficiaries</span>
+                    <span><i class="fas fa-calendar"></i> Est. 2018</span>
+                </div>
+            </div>
+
+            <div class="ngo-box" data-ngo="2">
+                <h3><i class="fas fa-graduation-cap"></i> Education First Bengaluru</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Koramangala, Bengaluru</p>
+                <div class="ngo-details">
+                    Free education and skill development programs
+                </div>
+                <div class="status-box rejected">Rejected</div>
+                <div class="contact-info">
+                    <div><i class="fas fa-phone"></i> +91 76543 21098</div>
+                    <div><i class="fas fa-envelope"></i> admin@edufirstblr.org</div>
+                </div>
+                <div class="ngo-stats">
+                    <span><i class="fas fa-users"></i> 85+ Beneficiaries</span>
+                    <span><i class="fas fa-calendar"></i> Est. 2020</span>
+                </div>
+            </div>
+
+            <div class="ngo-box" data-ngo="3">
+                <h3><i class="fas fa-leaf"></i> Green Earth Initiative</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Gurgaon, Haryana</p>
+                <div class="ngo-details">
+                    Environmental conservation and tree plantation
+                </div>
+                <div class="status-box approved">Approved</div>
+                <div class="contact-info">
+                    <div><i class="fas fa-phone"></i> +91 65432 10987</div>
+                    <div><i class="fas fa-envelope"></i> contact@greenearth.org</div>
+                </div>
+                <div class="ngo-stats">
+                    <span><i class="fas fa-users"></i> 300+ Volunteers</span>
+                    <span><i class="fas fa-calendar"></i> Est. 2017</span>
+                </div>
+            </div>
+
+            <div class="ngo-box" data-ngo="4">
+                <h3><i class="fas fa-paw"></i> Animal Welfare Society</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Pune, Maharashtra</p>
+                <div class="ngo-details">
+                    Rescue and rehabilitation of stray animals
+                </div>
+                <div class="status-box approved">Approved</div>
+                <div class="contact-info">
+                    <div><i class="fas fa-phone"></i> +91 54321 09876</div>
+                    <div><i class="fas fa-envelope"></i> help@animalwelfare.org</div>
+                </div>
+                <div class="ngo-stats">
+                    <span><i class="fas fa-users"></i> 120+ Animals Rescued</span>
+                    <span><i class="fas fa-calendar"></i> Est. 2016</span>
+                </div>
+            </div>
         </div>
 
-        <div class="ngo-box">
-            <h3>NGO 2</h3>
-            <p>📍 Mumbai</p>
-            <div class="status-box pending">Pending</div>
-        </div>
-
-        <div class="ngo-box">
-            <h3>NGO 3</h3>
-            <p>📍 Bengaluru</p>
-            <div class="status-box rejected">Rejected</div>
+        <div class="map-section">
+            <div id="map"></div>
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+    <script>
+        // Initialize the map centered on India
+        const map = L.map('map').setView([28.6139, 77.2090], 6);
 
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 18
+        }).addTo(map);
+
+        const ngoData = [
+            {
+                name: "Hope Foundation Delhi",
+                location: "Connaught Place, Delhi",
+                coordinates: [28.6304, 77.2177],
+                status: "approved",
+                description: "Providing food and shelter to underprivileged children",
+                contact: "+91 98765 43210",
+                beneficiaries: "150+"
+            },
+            {
+                name: "Care Mumbai Foundation",
+                location: "Bandra West, Mumbai",
+                coordinates: [19.0596, 72.8295],
+                status: "pending",
+                description: "Healthcare services for slum communities",
+                contact: "+91 87654 32109",
+                beneficiaries: "200+"
+            },
+            {
+                name: "Education First Bengaluru",
+                location: "Koramangala, Bengaluru",
+                coordinates: [12.9352, 77.6245],
+                status: "rejected",
+                description: "Free education and skill development programs",
+                contact: "+91 76543 21098",
+                beneficiaries: "85+"
+            },
+            {
+                name: "Green Earth Initiative",
+                location: "Gurgaon, Haryana",
+                coordinates: [28.4595, 77.0266],
+                status: "approved",
+                description: "Environmental conservation and tree plantation",
+                contact: "+91 65432 10987",
+                beneficiaries: "300+"
+            },
+            {
+                name: "Animal Welfare Society",
+                location: "Pune, Maharashtra",
+                coordinates: [18.5204, 73.8567],
+                status: "approved",
+                description: "Rescue and rehabilitation of stray animals",
+                contact: "+91 54321 09876",
+                beneficiaries: "120+"
+            }
+        ];
+
+        // Custom marker icons based on status
+        const getMarkerIcon = (status) => {
+            const colors = {
+                approved: '#4CAF50',
+                pending: '#FF9800',
+                rejected: '#f44336'
+            };
+
+            return L.divIcon({
+                className: 'custom-marker',
+                html: `<div style="
+                    background: ${colors[status]};
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    border: 3px solid white;
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+                "></div>`,
+                iconSize: [20, 20],
+                iconAnchor: [10, 10]
+            });
+        };
+
+        // Add markers to the map
+        const markers = [];
+        ngoData.forEach((ngo, index) => {
+            const marker = L.marker(ngo.coordinates, {
+                icon: getMarkerIcon(ngo.status)
+            }).addTo(map);
+
+            // Create popup content
+            const popupContent = `
+                <div class="popup-content">
+                    <h4>${ngo.name}</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> ${ngo.location}</p>
+                    <p>${ngo.description}</p>
+                    <p><i class="fas fa-users"></i> ${ngo.beneficiaries} Beneficiaries</p>
+                    <div class="popup-status status-box ${ngo.status}">${ngo.status.charAt(0).toUpperCase() + ngo.status.slice(1)}</div>
+                </div>
+            `;
+
+            marker.bindPopup(popupContent);
+            markers.push(marker);
+
+            // Add click event to marker
+            marker.on('click', () => {
+                selectNGO(index);
+            });
+        });
+
+        // NGO box click handlers
+        const ngoBoxes = document.querySelectorAll('.ngo-box');
+
+        function selectNGO(index) {
+            // Remove selection from all boxes
+            ngoBoxes.forEach(box => box.classList.remove('selected'));
+
+            // Add selection to clicked box
+            ngoBoxes[index].classList.add('selected');
+
+            // Center map on selected NGO
+            const ngo = ngoData[index];
+            map.setView(ngo.coordinates, 12);
+
+            // Open popup for selected marker
+            markers[index].openPopup();
+        }
+
+        ngoBoxes.forEach((box, index) => {
+            box.addEventListener('click', () => {
+                selectNGO(index);
+            });
+        });
+
+        // Fit map to show all markers initially
+        if (markers.length > 0) {
+            const group = new L.featureGroup(markers);
+            map.fitBounds(group.getBounds().pad(0.1));
+        }
+    </script>
 </body>
 
 </html>
