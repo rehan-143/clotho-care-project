@@ -1,7 +1,6 @@
 {
   "name": "hackathon",
   "version": "1.0.0",
-  "description": "",
   "main": "main.js",
   "scripts": {
     "start": "node server.js",
@@ -18,5 +17,6 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
-  }
+  },
+  "description": ""
 }
