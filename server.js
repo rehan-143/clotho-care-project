@@ -39,6 +39,7 @@ function loadDonorData() {
   }
   return [];
 }
+app.options('/submit', cors()); // ✅ Handle preflight
 
 app.post('/submit', upload.single('pdfFile'), (req, res) => {
   const donor = {

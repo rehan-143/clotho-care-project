@@ -56,6 +56,10 @@ body {
     opacity: 0.5;
 }
 
+.toastify {
+    z-index: 99999 !important;
+}
+
 .black-overlay {
     position: absolute;
     top: 80px;
@@ -213,7 +217,6 @@ body {
 .ngo-section {
     display: flex;
     gap: 20px;
-    padding: 120px;
     justify-content: center;
     flex-wrap: wrap;
 }
@@ -222,8 +225,8 @@ body {
     background-color: #ffffff;
     border: 2px solid #e0e0e0;
     border-radius: 15px;
-    padding: 20px;
-    width: 220px;
+    padding: 15px;
+    width: 100%;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
@@ -234,7 +237,7 @@ body {
 }
 
 .status-box {
-    margin-top: 30px;
+    margin-top: 10px;
     padding: 6px 12px;
     border-radius: 20px;
     font-weight: bold;
@@ -242,16 +245,198 @@ body {
     display: inline-block;
 }
 
+
+.ngo-section {
+    flex: 1;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1.5rem;
+    height: fit-content;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
+
+.ngo-section h2 {
+    color: white;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.map-section {
+    flex: 2;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    position: relative;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    border-radius: 15px;
+}
+
+.ngo-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.ngo-box:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.ngo-box.selected {
+    border: 2px solid #4CAF50;
+    background: rgba(76, 175, 80, 0.2);
+}
+
+.ngo-box h3 {
+    color: white;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ngo-box p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ngo-details {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+
 .status-box.approved {
-    background-color: #28a745;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
 }
 
 .status-box.pending {
-    background-color: #ffc107;
+    background: linear-gradient(135deg, #FF9800, #f57c00);
+    color: white;
 }
 
 .status-box.rejected {
-    background-color: #dc3545;
+    background: linear-gradient(135deg, #f44336, #d32f2f);
+    color: white;
+}
+
+.ngo-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.contact-info {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.contact-info i {
+    margin-right: 0.3rem;
+}
+
+/* Custom Leaflet popup styles */
+.leaflet-popup-content-wrapper {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+}
+
+.popup-content {
+    padding: 0.5rem;
+}
+
+.popup-content h4 {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.popup-status {
+    padding: 0.2rem 0.5rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.dashboard-container {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    min-height: calc(100vh - 116px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .ngo-section {
+        max-width: none;
+        margin-bottom: 1rem;
+    }
+
+    .map-section {
+        height: 400px;
+    }
+
+    .element {
+        gap: 1rem;
+    }
+
+    .element a {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.8rem;
+    }
+}
+
+/* Scrollbar styling */
+.ngo-section::-webkit-scrollbar {
+    width: 6px;
+}
+
+.ngo-section::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.ngo-section::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
 }
 
 /* Thank You Card Styles - Green Theme */
@@ -470,5 +655,10 @@ body {
     to {
         opacity: 0;
     }
+}
+
+=======
+.ngo-section::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
 }
 
