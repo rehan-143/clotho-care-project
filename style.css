@@ -439,6 +439,226 @@ body {
     border-radius: 3px;
 }
 
+/* Thank You Card Styles - Green Theme */
+.thank-you-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.thank-you-card {
+    background: linear-gradient(135deg, #2ECC71 0%, #27AE60 50%, #1E8449 100%);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(46, 204, 113, 0.3);
+    animation: slideIn 0.5s ease-out;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.thank-you-animation {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.heart-icon {
+    font-size: 60px;
+    color: #E8F5E8;
+    animation: heartBeat 1.5s ease-in-out infinite;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.checkmark {
+    font-size: 40px;
+    color: #A8E6A8;
+    animation: bounceIn 0.8s ease-out 0.5s both;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.thank-you-card h2 {
+    font-size: 28px;
+    margin: 20px 0 10px 0;
+    animation: slideUp 0.6s ease-out 0.3s both;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: #F8FFF8;
+}
+
+.thank-you-card p {
+    font-size: 16px;
+    margin: 10px 0;
+    opacity: 0.95;
+    animation: slideUp 0.6s ease-out 0.5s both;
+    color: #E8F5E8;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Sparkles Animation - Green Theme */
+.sparkles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #A8E6A8;
+    border-radius: 50%;
+    animation: sparkle 2s ease-in-out infinite;
+    box-shadow: 0 0 6px #A8E6A8;
+}
+
+.sparkle:nth-child(1) {
+    top: 20%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.sparkle:nth-child(2) {
+    top: 30%;
+    right: 20%;
+    animation-delay: 0.4s;
+}
+
+.sparkle:nth-child(3) {
+    bottom: 30%;
+    left: 30%;
+    animation-delay: 0.8s;
+}
+
+.sparkle:nth-child(4) {
+    bottom: 20%;
+    right: 30%;
+    animation-delay: 1.2s;
+}
+
+.sparkle:nth-child(5) {
+    top: 50%;
+    left: 10%;
+    animation-delay: 1.6s;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px) scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes heartBeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.fade-out {
+    animation: fadeOut 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+=======
 .ngo-section::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.5);
 }
+
